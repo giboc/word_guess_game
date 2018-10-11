@@ -2,18 +2,38 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Stuff</title>
+        <!-- Added link to the jQuery Library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <title>Hangman</title>
         <style>
             div{
                 display: inline;
             }
+
+            .letter{
+                margin: 10px;
+            }
+
+            .blank{
+                margin: 20px;
+            }
+
         </style>
     </head>
 
     
-    <body onkeydown="myFunction(event)">
-        <div id="empty-div"></div>
-        <div id="band-name"></div>
+    <body>
+        
+        <div id="band_name"></div>
+        <br>
+
+        <div id="player_status"></div>
+<br>
+        <div id="test"></div>
+<br>
+        <div id="game_board"></div>
+        <br>
         <script type="text/javascript" src = "assets/javascript/game.js"></script>
         
         
