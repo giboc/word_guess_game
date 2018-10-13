@@ -1,19 +1,23 @@
 //
 //Global Variables used for game
 //
-var wordBank = ["BLACK SABBATH", "IRON MAIDEN", "MANOWAR", "SONATA ARCTICA", "WINTERSUN"] //List of band names
+
+//List of band names
+var wordBank = ["BLACK SABBATH", "IRON MAIDEN", "MANOWAR", "SONATA ARCTICA", "WINTERSUN"];
+//List of music videos. Embed source is copy/pasted from youtube.
+//VideoBank[i] corresponds to its matching band in wordBank[i].
 var videoBank = [
     '<iframe width="560" height="315" src="https://www.youtube.com/embed/hkXHsK4AQPs?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
     '<iframe width="560" height="315" src="https://www.youtube.com/embed/WxnN05vOuSM?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
     '<iframe width="560" height="315" src="https://www.youtube.com/embed/1hebq6Uz1PQ?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
     '<iframe width="560" height="315" src="https://www.youtube.com/embed/NPHqfYfHx7s?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
     '<iframe width="560" height="315" src="https://www.youtube.com/embed/9pQvOyo1nfQ?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
-]
+];
 var guesses_left = 6; //Amount of incorrect guesses allowed.
 var badGuess = []; //We will use this to keep track of bad guesses.
 var score = 0; //The score.
-var gameWon = false;
-var randomNum;
+var gameWon = false; //We need this boolean for various checks later.
+var randomNum; //For selecting a band randomly.
 
 function gameSetup(word) {
     //Resets the game for the next round. Remove any win/lose messages, refresh number of guesses, etc.
@@ -26,7 +30,7 @@ function gameSetup(word) {
     $("#video").html("");
     $("#new_game").css("display", "none");
     $("#game_status").html("");
-    $("#bad_guess").html("Bad guesses: "); 
+    $("#bad_guess").html("Bad guesses: ");
 
     //Sets the guess word display.
     for (var i = 0; i < word.length; i++) {
@@ -43,19 +47,19 @@ function gameSetup(word) {
             letter.attr("data", word.charAt(i));
             letter.text("_");
         }
-        $("#game_board").append(letter); //Adds to the display  
+        $("#game_board").append(letter); //Adds the resulting string to the display  
     }
     badGuess = [];
 };
-
-randomNum = Math.floor(Math.random() * wordBank.length);
-gameSetup(wordBank[randomNum]);
-
 
 //Takes input from player.
 //If letter is found, it's displayed.
 //If letter is not found, nothing yet.
 $(document).ready(function () {
+    //Pick a random number, use that index to generate the game.
+    randomNum = Math.floor(Math.random() * wordBank.length);
+    gameSetup(wordBank[randomNum]);
+
     $(document).on("keypress", function () {
         //Check to see if the player has anymore available guesses.
         if (guesses_left > 0) {
@@ -78,11 +82,11 @@ $(document).ready(function () {
                     loseLife = false;
             }
 
-            
+            //If a bad guess is made, populate the badGuess array.
             if (loseLife) {
                 if (badGuess.length == 0)
                     badGuess.push(guess);
-                if (!badGuess.includes(guess))
+                if (!badGuess.includes(guess)) //We don't want duplicates in this array.
                     badGuess.push(guess);
                 badGuess.sort();
                 $("#bad_guess").text("Bad guesses: " + badGuess);
@@ -92,14 +96,16 @@ $(document).ready(function () {
                 $("#player_status").text("Guesses left: " + guesses_left);
             }
 
+            //Check to see if the game is won. It's won if there are no more '_' left.
             $(".letter").each(function () {
                 gameWon = $(this).text() != '_';
                 if (!gameWon)
                     return false;
             });
+            //Game over!
             if (guesses_left == 0)
                 $("#game_status").text("Game over!");
-
+            //Setup the game won display.
             if (gameWon) {
                 $("#game_status").text("You win!");
                 $("#score").text("Score: " + ++score);
@@ -107,14 +113,15 @@ $(document).ready(function () {
                 $("button").css("display", "flex");
                 guesses_left = 0;
             }
+            //Activate and setup the next round button.
             $("#new_game").on("click", function () {
                 randomNum = Math.floor(Math.random() * wordBank.length);
                 gameSetup(wordBank[randomNum]);
             })
         }
-        //Nope, no more guesses!
+        //Prevent guesses after game over.
         else
-            if( confirm("Game over! Play again?")){
+            if (confirm("Game over! Play again?")) {
                 score = 0;
                 randomNum = Math.floor(Math.random() * wordBank.length);
                 gameSetup(randomNum);
