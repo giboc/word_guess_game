@@ -5,37 +5,28 @@
         <!-- Added link to the jQuery Library -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         
+        <link rel="stylesheet" href="assets/css/reset.css"> 
+        <link rel="stylesheet" href="assets/css/style.css"> 
         <title>Hangman</title>
-        <style>
-            div{
-                display: inline;
-            }
 
-            .letter{
-                margin: 10px;
-            }
-
-            .blank{
-                margin: 20px;
-            }
-
-        </style>
     </head>
 
     
     <body>
-        
+        <h1>Metal hangman!</h1>
+        <p>To play: enter a letter. Refresh the browser to start over!</p>
         <div id="video"></div>
         <br>
         <div id="score"></div><br>
         <div id="player_status"></div>
-
+        <div id="bad_guess"></div>
         <br>
         <div id="game_board"></div>
         <br>
         <div id="game_status"></div>
         <br>
         <div id="video"></div>
+        <button type="button" id="new_game">Next round!</button>
         <script type="text/javascript" src = "assets/javascript/game.js"></script>
         
         

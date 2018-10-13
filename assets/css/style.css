@@ -1,0 +1,51 @@
+@font-face{
+    font-family: "maiden";
+    src: url("../fonts/maiden.ttf");
+}
+
+body{
+    font-family: "arial";
+    background: black;
+    color: yellow;
+    font-size: 50px;
+    margin: 10px;
+}
+
+p{
+    color: white;
+    margin-top:40px;
+    margin-bottom:40px;
+    
+}
+
+h1{
+    font-family: "maiden";
+    color: white;
+    font-size: 125px;
+    
+}
+
+div{
+   display: block;
+}
+
+#bad_guess{
+    color: red; 
+}
+
+.letter{
+    display: inline;
+    margin: 10px;
+}
+
+.blank{
+    margin: 20px;
+}
+
+button{
+    display: none;
+}
+
+#video{
+    position: bottom;
+}
