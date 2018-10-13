@@ -1,11 +1,19 @@
 //
 //Global Variables used for game
 //
-var wordBank = ["IRON MAIDEN","WINTERSUN"] //List of band names
+var wordBank = ["BLACK SABBATH", "IRON MAIDEN", "MANOWAR", "SONATA ARCTICA", "WINTERSUN"] //List of band names
+var videoBank = [
+    '<iframe width="560" height="315" src="https://www.youtube.com/embed/hkXHsK4AQPs?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
+    '<iframe width="560" height="315" src="https://www.youtube.com/embed/WxnN05vOuSM?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
+    '<iframe width="560" height="315" src="https://www.youtube.com/embed/1hebq6Uz1PQ?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
+    '<iframe width="560" height="315" src="https://www.youtube.com/embed/NPHqfYfHx7s?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
+    '<iframe width="560" height="315" src="https://www.youtube.com/embed/9pQvOyo1nfQ?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
+]
 var guesses_left = 6; //Amount of incorrect guesses allowed.
 var badGuess = []; //We will use this to keep track of bad guesses.
 var score = 0; //The score.
 var gameWon = false; 
+var randomNum;
 
 //Initializes the game.
 //1) Sets up the initial display of the game.
@@ -52,8 +60,8 @@ function gameSetup(word){
 //         newLetter.textContent = wordBank[0].charAt(i);
 //         targetDiv.appendChild(newLetter);
 //     }
-
-gameSetup(wordBank[0]);
+randomNum = Math.floor(Math.random()*wordBank.length); 
+gameSetup(wordBank[randomNum]);
 
 
 //Takes input from player.
@@ -103,7 +111,7 @@ $(document).ready(function(){
             if(gameWon){
                 $("#game_status").text("You win!");
                 $("#score").text("Score" + ++score);
-                $("#video").html('<iframe width="560" height="315" src="https://www.youtube.com/embed/WxnN05vOuSM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>');
+                $("#video").html(videoBank[randomNum]);
                 guesses_left=0;
             }
             
