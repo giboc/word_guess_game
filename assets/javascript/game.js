@@ -104,7 +104,7 @@ $(document).ready(function () {
                 $("#game_status").text("You win!");
                 $("#score").text("Score: " + ++score);
                 $("#video").html(videoBank[randomNum]);
-                $("button").css("display", "inline");
+                $("button").css("display", "flex");
                 guesses_left = 0;
             }
             $("#new_game").on("click", function () {

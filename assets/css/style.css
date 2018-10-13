@@ -4,11 +4,14 @@
 }
 
 body{
+    position: relative;
+    width: 800px;
+    margin: auto;
     font-family: "arial";
     background: black;
     color: yellow;
-    font-size: 50px;
-    margin: 10px;
+    font-size: 40px;
+    /* margin: 10px; */
 }
 
 p{
@@ -21,7 +24,7 @@ p{
 h1{
     font-family: "maiden";
     color: white;
-    font-size: 125px;
+    font-size: 100px;
     
 }
 
@@ -40,10 +43,25 @@ div{
 
 .blank{
     margin: 20px;
+    display:inline;
 }
 
-button{
-    display: none;
+#test{
+    width: 100%;
+    margin: auto;
+}
+
+#new_game{
+    display:none;
+    justify-content: center;
+    margin:auto;
+    background-color: purple;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    width: 200px;
+    height: 100px;
+    
 }
 
 #video{
